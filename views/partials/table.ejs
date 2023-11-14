@@ -1,0 +1,92 @@
+<% p = JSON.parse(product) %>
+<tr >
+
+    <td> 
+        <input type="text" class="form-control form-control-sm" id="code<%= p.id %>" name="code"  value="<%= p.code %>">
+    </td>
+    
+    <td>
+        <input type="text" class="form-control form-control-sm" id="desc<%= p.id %>"  name="desc" value="<%= p.desc %>">
+    </td>
+    <td>
+        <input type="number" class="form-control form-control-sm" min="1" id="qty<%= p.id %>" name="qty" data-id="<%= p.id %>" oninput="calculateAmount(this)" value="1" >
+    </td>
+    <td>
+        <input type="text" class="form-control form-control-sm" id="rate<%= p.id %>" name="rate" data-id="<%= p.id %>" oninput="calculateAmount(this)"  value="<%= p.rate %>">
+    </td>
+    <td>
+        <input type="text" class="form-control form-control-sm" id="amount<%= p.id %>" name="amount" data-id="<%= p.id %>" oninput="calculateAmount(this)" value="<%= p.rate %>">
+    </td>
+    <td>
+        <input type="text" class="form-control form-control-sm" max="100" min="0" step="any" id="dis%<%= p.id %>" name="dis" data-id="<%= p.id %>" oninput="calculateAmount(this)" value="0">
+    </td>
+    <td>
+        <input type="text" class="form-control form-control-sm" min="0" id="discount<%= p.id %>" name="discount"  data-id="<%= p.id %>" oninput="calculateAmount(this)" value="0"> 
+    </td>
+    
+    <script>
+
+
+        function calculateAmount(input){
+            
+            console.log(input);
+            var id = input.getAttribute('data-id');
+            var name = input.getAttribute('id')
+
+            
+
+            
+            const rate = document.getElementById('rate'+id).value;
+            const qty = document.getElementById('qty' +id).value;
+
+
+
+
+            if (name.includes('dis%')) {
+                
+                console.log('%');
+                const disPercentage = document.getElementById('dis%' +id).value;
+
+                const discountvalue = (rate * qty * disPercentage)/100
+                const amount = rate * qty - discountvalue;
+                
+                // Update the amount input field
+                document.getElementById('amount'+id).value = amount.toFixed(2);
+                document.getElementById('discount'+id).value = discountvalue.toFixed(2);
+            }
+            else if (name.includes('amount')){
+                console.log('amount');
+                const amount = document.getElementById('amount' +id).value;
+
+                const discountvalue = Math.abs(amount - rate*qty)
+                const disPercentage = Math.abs((discountvalue / (rate * qty)) * 100);
+
+
+                
+                // Update the amount input field
+                document.getElementById('dis%'+id).value = disPercentage.toFixed(2);
+                document.getElementById('discount'+id).value = discountvalue.toFixed(2);
+            }
+            else if (name.includes('qty')){
+                const amountvalue = qty*rate
+                document.getElementById('amount'+id).value = amountvalue.toFixed(2);
+
+                document.getElementById('dis%'+id).value = 0;
+                document.getElementById('discount'+id).value = 0;
+            }
+            
+            
+
+
+        };
+
+
+
+
+        
+
+    </script>
+
+
+</tr>
+

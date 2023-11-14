@@ -1,0 +1,76 @@
+<div class="col-md-5 p-2">
+
+
+<div class="row mb-1">
+    <div class="col-3 m-auto ">
+        Code
+    </div>
+    <div class="col ">
+        <input type="text" class="form-control form-control-sm" value="<%= customer.id %>">
+    </div>
+</div>
+<div class="row mb-1">
+    <div class="col-3 m-auto ">
+        Name
+    </div>
+    <div class="col ">
+        <input type="text" class="form-control form-control-sm" value="<%= customer.name %>">
+    </div>
+</div>
+<div class="row mb-1">
+    <div class="col-3 m-auto ">
+        Contact
+    </div>
+    <div class="col ">
+        <input type="text" class="form-control form-control-sm" value="<%= customer.contact %>">
+    </div>
+</div>
+<div class="row mb-1">
+    <div class="col-3 m-auto ">
+        Email
+    </div>
+    <div class="col ">
+        <input type="text" class="form-control form-control-sm " value="<%= customer.email %>">
+    </div>
+</div>
+</div>
+
+
+
+<ul class="nav nav-tabs" id="myTabs">
+    <li class="nav-item">
+      <a class="nav-link " id="home-tab" data-bs-toggle="tab" href="#home">Prescription</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile">Sales Order</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact">Counter Sales</a>
+    </li>
+  </ul>
+
+  <div class="tab-content mt-2">
+    <div class="tab-pane fade " id="home">
+      <h2>Home Content</h2>
+      <p>This is the content for the Home tab.</p>
+    </div>
+    <div class="tab-pane fade show active " id="profile">
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+                <%- include('./salesinfo.ejs') %>
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="contact">
+      <h2>Contact Content</h2>
+      <p>This is the content for the Contact tab.</p>
+    </div>
+  </div>
