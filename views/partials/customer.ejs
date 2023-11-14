@@ -127,6 +127,21 @@
 
             document.getElementById('dis%'+id).value = 0;
             document.getElementById('discount'+id).value = 0;
+        } 
+        else if (name.includes('discount')){
+            console.log('amount');
+            const discountvalue = document.getElementById('discount' +id).value;
+            const qty = document.getElementById('qty' +id).value;
+            const rate = document.getElementById('rate'+id).value;
+
+            // const discountvalue = Math.abs(amount - rate*qty)
+            // const disPercentage = Math.abs((discountvalue / (rate * qty)) * 100);
+
+
+            
+            // Update the amount input field
+            document.getElementById('dis%'+id).value = ((discountvalue/rate*qty)*100).toFixed(2);
+            document.getElementById('amount'+id).value = (rate*qty-discountvalue).toFixed(2);
         }
         
         
