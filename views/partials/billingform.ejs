@@ -1,0 +1,95 @@
+<div class="row g-2 mb-2">
+    <div class="col-md-6">
+        <label for="reason" class="form-label">Value</label>
+        <input type="text" class="form-control form-control-sm" id="totalAmount" name="value">
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <label for="discount" class="form-label">Discount</label>
+            <div class="col-md-6 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-sm" id="totaldis" name="dis" oninput="getDiscount()">
+            </div>
+            <div class="col-md-6 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-sm" id="totaldiscount" name="discount">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="reason" class="form-label">Reason</label>
+        <input type="text" class="form-control form-control-sm" id="reason" name="reason">
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="vat" class="form-label">VAT</label>
+                <input type="text" class="form-control form-control-sm" id="vat" name="vat">
+            </div>
+            <div class="col-md-6">
+                <label for="otherCharges" class="form-label">Other Charges</label>
+                <input type="text" class="form-control form-control-sm" id="otherCharges" name="otherCharges">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="balanceAmount" class="form-label">Balance Amount</label>
+        <input type="text" class="form-control form-control-sm" id="balanceAmount" name="balanceAmount">
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="advance" class="form-label">Advance</label>
+                <input type="text" class="form-control form-control-sm" id="advance" name="advance" value="0" oninput="netbalance()">
+            </div>
+            <div class="col-md-6">
+                <label for="mode" class="form-label">Mode</label>
+                <input type="text" class="form-control form-control-sm" id="mode" name="mode">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="netAmount" class="form-label">Net Amount</label>
+        <input type="text" class="form-control form-control-sm" id="netAmount" name="netAmount">
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="dueDate" class="form-label">Due Date</label>
+                <input type="date" class="form-control form-control-sm" id="dueDate" name="dueDate">
+            </div>
+            <div class="col-md-6">
+                <label for="dueTime" class="form-label">Due Time</label>
+                <input type="time" class="form-control form-control-sm" id="dueTime" name="dueTime">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+function getDiscount() {
+
+    const decimalPercentage =     document.getElementById('totaldis').value / 100;
+    const totalAmount = document.getElementById('totalAmount').value
+    const discount =totalAmount * decimalPercentage;
+
+    console.log(discount);
+    // Update the "discount" input with the calculated value
+
+    document.getElementById('netAmount').value = totalAmount - discount
+    document.getElementById('balanceAmount').value =document.getElementById('netAmount').value
+
+    document.getElementById('totaldiscount').value = discount.toFixed(2);
+    document.getElementById('advance').value = 0
+
+  }
+
+
+  function  netbalance() {
+
+
+    document.getElementById('balanceAmount').value =document.getElementById('netAmount').value - document.getElementById('advance').value
+
+
+
+}
+</script>

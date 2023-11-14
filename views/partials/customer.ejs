@@ -62,6 +62,23 @@
             <div class="col-md-6">
                 <%- include('./salesinfo.ejs') %>
 
+
+
+
+        
+                <div class="collapse" id="billingCollapse">
+                    <form hx-post="/addcustomer" hx-target="#getcustomer" hx-swap="innerHTML">
+
+                        <%- include('./billingform.ejs') %>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+                </div>
+
+
+
             </div>
             <div class="col-md-3">
 

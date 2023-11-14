@@ -60,16 +60,30 @@
 
     </table>
 
-    <button type="submit" class="btn btn-success" id="save" onclick="saved()" style="display: none;">Saved</button>
+    <div class="text-center">
+      <button type="button" class="btn btn-dark btn-sm "  data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+
+
+    <div class="d-flex">
+      <div class="mb-2 me-2">
+      <button type="submit" class="btn btn-success" id="save" onclick="saved()" style="display: none;">Saved</button>
+    </div>
+      <div class="mb-2 ">
+        <a type="button" class="btn btn-primary  " onclick="gettotal()" data-bs-toggle="collapse"   data-bs-target="#billingCollapse"  class="btn btn-primary">Bill</a>
+  
+      </div>
+    </div>
+
   </form>
 
 
 
   <div class="text-center">
 
-    <button type="button" class="btn btn-dark btn-sm "  data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <i class="fa-solid fa-plus"></i>
-    </button>
+
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,16 +124,42 @@
 <script>
 
   if (document.getElementById('items').innerText !== '') {
-    console.log(document.getElementById('items').innerText);
+
     document.getElementById('save').style.display = 'block';
   }
   function showsave() {
     document.getElementById('save').style.display = 'block';
     document.getElementById('save').innerText = 'Save*';
   }
+  
+  
   function saved() {
     document.getElementById('save').innerText = 'Saved';
   }
+  
+  
+  
+  function gettotal() {
+    console.log('total');
+    const amountInputs = document.querySelectorAll('input[id*="amount"]');
+
+    let totalAmount = 0;
+
+    amountInputs.forEach(input => {
+      const inputValue = parseFloat(input.value) || 0; 
+      totalAmount += inputValue;
+    });
+
+
+
+    document.getElementById('netAmount').value = totalAmount.toFixed(2);
+    document.getElementById('balanceAmount').value = totalAmount.toFixed(2);
+
+    document.getElementById('totalAmount').value = totalAmount.toFixed(2);
+  }
+
+
+
 
 
 </script>
