@@ -2,9 +2,9 @@
 
 
 
-  <form action="/productssave" method="post">
+  <form hx-post="/productssave" method="post">
 
-    <input type="text" name="id" value="<%= customer.id %>">
+    <input type="text" name="id" class="d-none"  value="<%= customer.id %>">
     <table class="table" id="product-table">
       <thead>
         <tr>
@@ -60,7 +60,7 @@
 
     </table>
 
-    <button type="submit" class="btn btn-primary" id="save" style="display: none;">save</button>
+    <button type="submit" class="btn btn-success" id="save" onclick="saved()" style="display: none;">Saved</button>
   </form>
 
 
@@ -108,7 +108,17 @@
 
 
 <script>
-  function showsave() {
+
+  if (document.getElementById('items').innerText !== '') {
+    console.log(document.getElementById('items').innerText);
     document.getElementById('save').style.display = 'block';
   }
+  function showsave() {
+    document.getElementById('save').innerText = 'Save*';
+  }
+  function saved() {
+    document.getElementById('save').innerText = 'Saved';
+  }
+
+
 </script>

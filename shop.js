@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', function(req, res) {
 
-
-    res.render('index' , {});
+    const customer = shopdb.prepare(`SELECT * FROM customer `).all()
+    res.render('index' , {customer});
 });
 
 app.get('/getcustomer/:id', function(req, res) {
@@ -62,10 +62,20 @@ app.post('/productssave', function(req, res) {
 
 
 
-    res.redirect('/')
+  
 });
 
+app.post('/addcustomer', function(req, res) {
+    const {code , name , contact , email , dob , age,head,address,city,pincode  } =req.body
 
+    shopdb.prepare(`INSERT INTO customer (name , contact , email , dob , age,familyhead,address,city,pincode ) VALUES (?,?,?,?,?,?,?,?,?)`)
+    .run( name , contact , email , dob , age,head,address,city,pincode)
+
+    const id = shopdb.prepare(`SELECT * FROM customer WHERE contact=?`).all(contact)
+
+    console.log(req.body);
+    res.redirect(`getcustomer/${id[0].id}`)
+});
 
 
 app.listen(8080,()=>{
