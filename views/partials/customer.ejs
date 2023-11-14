@@ -74,3 +74,69 @@
       <p>This is the content for the Contact tab.</p>
     </div>
   </div>
+
+
+
+
+  <script>
+
+
+    function calculateAmount(input){
+        
+        console.log(input);
+        var id = input.getAttribute('data-id');
+        var name = input.getAttribute('id')
+
+        
+
+        
+        const rate = document.getElementById('rate'+id).value;
+        const qty = document.getElementById('qty' +id).value;
+
+
+
+
+        if (name.includes('dis%')) {
+            
+            console.log('%');
+            const disPercentage = document.getElementById('dis%' +id).value;
+
+            const discountvalue = (rate * qty * disPercentage)/100
+            const amount = rate * qty - discountvalue;
+            
+            // Update the amount input field
+            document.getElementById('amount'+id).value = amount.toFixed(2);
+            document.getElementById('discount'+id).value = discountvalue.toFixed(2);
+        }
+        else if (name.includes('amount')){
+            console.log('amount');
+            const amount = document.getElementById('amount' +id).value;
+
+            const discountvalue = Math.abs(amount - rate*qty)
+            const disPercentage = Math.abs((discountvalue / (rate * qty)) * 100);
+
+
+            
+            // Update the amount input field
+            document.getElementById('dis%'+id).value = disPercentage.toFixed(2);
+            document.getElementById('discount'+id).value = discountvalue.toFixed(2);
+        }
+        else if (name.includes('qty')){
+            const amountvalue = qty*rate
+            document.getElementById('amount'+id).value = amountvalue.toFixed(2);
+
+            document.getElementById('dis%'+id).value = 0;
+            document.getElementById('discount'+id).value = 0;
+        }
+        
+        
+
+
+    };
+
+
+
+
+    
+
+</script>

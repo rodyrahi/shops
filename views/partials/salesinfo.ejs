@@ -3,6 +3,8 @@
 
 
   <form action="/productssave" method="post">
+
+    <input type="text" name="id" value="<%= customer.id %>">
     <table class="table" id="product-table">
       <thead>
         <tr>
@@ -18,6 +20,41 @@
       </thead>
 
       <tbody id="items">
+
+        <% sales.forEach(p => { %>
+
+
+          <tr >
+
+            <td> 
+                <input type="text" class="form-control form-control-sm" id="code<%= p.id %>" name="code"  value="<%= p.code %>">
+            </td>
+            
+            <td>
+                <input type="text" class="form-control form-control-sm" id="desc<%= p.id %>"  name="desc" value="<%= p.desc %>">
+            </td>
+            <td>
+                <input type="number" class="form-control form-control-sm" min="1" id="qty<%= p.id %>" name="qty" data-id="<%= p.id %>" oninput="calculateAmount(this)" value="<%= p.qty %>" >
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm" id="rate<%= p.id %>" name="rate" data-id="<%= p.id %>" oninput="calculateAmount(this)"  value="<%= p.rate %>">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm" id="amount<%= p.id %>" name="amount" data-id="<%= p.id %>" oninput="calculateAmount(this)" value="<%= p.amount %>">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm" max="100" min="0" step="any" id="dis%<%= p.id %>" name="dis" data-id="<%= p.id %>" oninput="calculateAmount(this)" value="<%= p.dis %>">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm" min="0" id="discount<%= p.id %>" name="discount"  data-id="<%= p.id %>" oninput="calculateAmount(this)" value="<%= p.discount%>"> 
+            </td>
+            
+        
+        
+        
+        </tr>
+        <% }) %>
+
 
       </tbody>
 
