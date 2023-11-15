@@ -67,7 +67,7 @@
 
         
                 <div class="collapse" id="billingCollapse">
-                    <form hx-post="/addcustomer" hx-target="#getcustomer" hx-swap="innerHTML">
+                    <form action="/makebill" method="post" target="_blank">
 
                         <%- include('./billingform.ejs') %>
 
