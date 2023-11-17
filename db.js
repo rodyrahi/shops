@@ -7,7 +7,7 @@ shopdb.exec(`
   CREATE TABLE IF NOT EXISTS customer (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
-    eamil TEXT,
+    email TEXT,
     contact INTEGER,
     dob INTEGER,
     age INTEGER,
